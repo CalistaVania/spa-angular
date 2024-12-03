@@ -1,27 +1,51 @@
-<div class="container my-5">
-    <h2>Data Mahasiswa</h2>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>NPM</th>
-          <th>Nama Mahasiswa</th>
-          <th>Prodi</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Data Fakultas akan di-loop di sini -->
-        <tr>
-          <td>2226240062</td>
-          <td>Calista Vania</td>
-          <td>Sistem Informasi</td>
-        </tr>
-        <tr>
-            <td>226240007</td>
-            <td>Felicia</td>
-            <td>Manajemen</td>
-          </tr>
-          <tr>
-      </tbody>
-    </table>
+<div class="container mt-4">
+  <!-- Kontainer utama untuk daftar mahasiswa, memberikan margin atas menggunakan kelas Bootstrap "mt-4". -->
+  <h2>Daftar Mahasiswa</h2>
+  <!-- Judul halaman untuk daftar mahasiswa -->
+  
+  <!-- Loader -->
+  <div class="d-flex justify-content-center mt-4" *ngIf="isLoading">
+    <!-- Loader ditampilkan jika properti `isLoading` bernilai true -->
+    <div class="spinner-border text-primary" role="status">
+      <!-- Komponen spinner Bootstrap untuk menampilkan animasi loading -->
+      <span class="visually-hidden">Loading...</span>
+      <!-- Teks alternatif untuk pembaca layar, membantu aksesibilitas -->
+    </div>
   </div>
+
+  <!-- Data Mahasiswa -->
+  <table class="table table-bordered table-striped" *ngIf="!isLoading">
+    <!-- Tabel ditampilkan hanya jika `isLoading` bernilai false -->
+    <thead>
+      <tr>
+        <!-- Baris header tabel -->
+        <th>NPM</th>
+        <!-- Kolom untuk menampilkan NPM -->
+        <th>Nama</th>
+        <!-- Kolom untuk menampilkan nama mahasiswa -->
+        <th>Prodi</th>
+        <!-- Kolom untuk menampilkan nama mahasiswa -->
+        <th>Jenis Kelamin</th>
+        <th>Asal Sekolah</th>
+        <th>Foto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of mahasiswa">
+        <!-- Iterasi melalui array `mahasiswa` untuk setiap elemen -->
+        <td>{{ item.npm }}</td>
+        <!-- Menampilkan properti `npm` dari setiap objek dalam array -->
+        <td>{{ item.nama }}</td>
+        <!-- Menampilkan properti `nama` dari setiap objek dalam array -->
+        <td>{{ item.prodi_id.nama }}</td>
+        <!-- Menampilkan properti `prodi_id` dari setiap objek dalam array -->
+        <td>{{ item.jenis_kelamin }}</td>
+        <!-- Menampilkan properti `jenis_kelamin` dari setiap objek dalam array -->
+        <td>{{ item.asal_sekolah }}</td>
+        <!-- Menampilkan properti `asal_sekolah` dari setiap objek dalam array -->
+        <td>{{ item.foto }}</td>
+        <!-- Menampilkan properti `foto` dari setiap objek dalam array -->
+      </tr>
+    </tbody>
+  </table>
+</div>
